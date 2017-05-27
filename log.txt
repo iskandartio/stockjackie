@@ -1,0 +1,8 @@
+drop table if exists temp_stock
+from_date
+to_date
+select b.buy_date trans_date, a.qty from buy_detail a 
+			left join buy b on a.buy_id=b.rowid
+			where a.stock_id=871 and b.buy_date >= ? union all select b.sell_date trans_date, -a.qty from sell_detail a 
+			left join sell b on a.sell_id=b.rowid
+			where a.stock_id=871 and b.sell_date >= ?
